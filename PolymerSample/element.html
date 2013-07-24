@@ -1,0 +1,28 @@
+<element name="adams-hello">
+<section>
+I'm a my-element!
+<time id='currentTime' />
+</section>
+<footer>nothing to see here</footer>
+<script>
+	var el;
+	function tick(){
+		el.innerHTML = (new Date()).toString();
+	}
+	// When <element> is in document, might run in wrong context.
+	// Only do work when this == <element>.
+	if (this !== window) {
+		var section = this.querySelector('section');
+		this.register({
+			prototype: {
+				readyCallback: function() {
+					var root = this.createShadowRoot();
+					root.innerHTML = section.innerHTML;
+					el = root.querySelector("#currentTime");
+					setInterval(tick, 1000);
+				}
+			}
+		});
+	}
+</script>
+</element>
