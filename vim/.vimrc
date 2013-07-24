@@ -1,20 +1,23 @@
-set backspace=indent,eol,start
-:syntax on
-:set autoindent
-:set ignorecase
-filetype indent on
-filetype plugin on
 :set hlsearch
 :set incsearch
-let g:neocomplcache_enable_at_startup = 1
 
+:set autoindent
+:set ignorecase
+
+:syntax on
+set backspace=indent,eol,start
+
+filetype indent on
+filetype plugin on
+
+let g:neocomplcache_enable_at_startup = 1
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " :highlight MatchParen ctermbg=white
 " :highlight Normal ctermfg=grey ctermbg=white
 
 set noswapfile
-:set laststatus=2
+:set laststatus=2 " Status bar
 
 set statusline=%t       "tail of the filename
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
@@ -39,3 +42,5 @@ set statusline+=\ %P    "percent through file
 :nnoremap <leader>w :tabclose<cr>
 :nnoremap <leader>s :w<cr>
 :nnoremap <c-n> :set invrelativenumber<cr>
+:nnoremap <s-down> :m+1<cr>
+:nnoremap <s-up> :m-2<cr>
