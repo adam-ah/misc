@@ -15,8 +15,6 @@ var Boid = function(){
 		if(!container.find('#' + this.id).length){
 			this.div.appendTo(container);
 		}
-		// this.div.css('left', window.innerWidth / 2);
-		// this.div.css('top', window.innerHeight / 2);
 		this.div.css('margin-left', this.x);
 		this.div.css('margin-top', this.y);
 	}
@@ -116,10 +114,6 @@ function StepBoidAway(boid, boids){
 		d.x += 2 * (boid.x - b.x);
 		d.y += 2 * (boid.y - b.y);
 	}
-
-	// Empirical value.
-	// d.x /= Boid.awaySlowdown;
-	// d.y /= Boid.awaySlowdown;
 
 	return d;
 }
