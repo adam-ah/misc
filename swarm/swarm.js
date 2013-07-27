@@ -72,27 +72,27 @@ function GenerateBoids(){
 
 function StepBoids(boids, destination, blocks){
 	for(var i = 0, b; b = boids[i]; i++){
-		var dCenter = StepBoidCenter(b, boids);
-		var dDest = StepBoidDestination(b, destination);
-		var dAway = StepBoidAway(b, boids);
+		var dCenter = StepBoidCenter(b, boids); // Get a vector center.
+		var dDest = StepBoidDestination(b, destination); // Get a vector for destination.
+		var dAway = StepBoidAway(b, boids); // Get a vector away from others.
 		var x = dAway.x + dCenter.x + dDest.x;
 		var y = dAway.y + dCenter.y + dDest.y;
 		var length = Math.sqrt(x*x + y*y);
 		if(length){
-			x = x * Boid.speed / length;
+			x = x * Boid.speed / length; // Normalise speed.
 			y = y * Boid.speed / length;
 		}
 
 		var blocked = false;
 		for(var j = 0, block; block = blocks[j]; j++){
 			if(block.inBlock(b.x + x, b.y + y)){
-				blocked = true;
+				blocked = true; // Simple 'wall' detection.
 				break;
 			}
 		}
 		if(!blocked){
-			b.x += x; // - 1 + 2 * Math.random();
-			b.y += y; // - 1 + 2 * Math.random();
+			b.x += x; 
+			b.y += y;
 		}
 	}
 }
