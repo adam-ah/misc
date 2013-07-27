@@ -72,8 +72,8 @@ function GenerateBoids(){
 
 function StepBoids(boids, destination, blocks){
 	for(var i = 0, b; b = boids[i]; i++){
-		var dCenter = StepBoidCenter(b, boids); // Get a vector center.
-		var dDest = StepBoidDestination(b, destination); // Get a vector for destination.
+		var dCenter = StepBoidCenter(b, boids); // Get a vector to center.
+		var dDest = StepBoidDestination(b, destination); // Get a vector to  destination.
 		var dAway = StepBoidAway(b, boids); // Get a vector away from others.
 		var x = dAway.x + dCenter.x + dDest.x;
 		var y = dAway.y + dCenter.y + dDest.y;
