@@ -15,8 +15,6 @@ var Boid = function(){
 		if(!container.find('#' + this.id).length){
 			this.div.appendTo(container);
 		}
-		// this.div.css('left', window.innerWidth / 2);
-		// this.div.css('top', window.innerHeight / 2);
 		this.div.css('margin-left', this.x);
 		this.div.css('margin-top', this.y);
 	}
@@ -74,27 +72,27 @@ function GenerateBoids(){
 
 function StepBoids(boids, destination, blocks){
 	for(var i = 0, b; b = boids[i]; i++){
-		var dCenter = StepBoidCenter(b, boids);
-		var dDest = StepBoidDestination(b, destination);
-		var dAway = StepBoidAway(b, boids);
+		var dCenter = StepBoidCenter(b, boids); // Get a vector to center.
+		var dDest = StepBoidDestination(b, destination); // Get a vector to  destination.
+		var dAway = StepBoidAway(b, boids); // Get a vector away from others.
 		var x = dAway.x + dCenter.x + dDest.x;
 		var y = dAway.y + dCenter.y + dDest.y;
 		var length = Math.sqrt(x*x + y*y);
 		if(length){
-			x = x * Boid.speed / length;
+			x = x * Boid.speed / length; // Normalise speed.
 			y = y * Boid.speed / length;
 		}
 
 		var blocked = false;
 		for(var j = 0, block; block = blocks[j]; j++){
 			if(block.inBlock(b.x + x, b.y + y)){
-				blocked = true;
+				blocked = true; // Simple 'wall' detection.
 				break;
 			}
 		}
 		if(!blocked){
-			b.x += x; // - 1 + 2 * Math.random();
-			b.y += y; // - 1 + 2 * Math.random();
+			b.x += x; 
+			b.y += y;
 		}
 	}
 }
@@ -116,10 +114,6 @@ function StepBoidAway(boid, boids){
 		d.x += 2 * (boid.x - b.x);
 		d.y += 2 * (boid.y - b.y);
 	}
-
-	// Empirical value.
-	// d.x /= Boid.awaySlowdown;
-	// d.y /= Boid.awaySlowdown;
 
 	return d;
 }
