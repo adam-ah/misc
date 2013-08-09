@@ -17,9 +17,6 @@ class Player:
         self.reputation = 0
         self.randomcount = 99 # random.randint(0,100)
 
-    # All the other functions are the same as with the non object oriented setting (but they
-    # should be instance methods so don't forget to add 'self' as an extra first argument).
-
     def hunt_choices(self, round_number, current_food, current_reputation, m,
             player_reputations):
         self.reputation = current_reputation

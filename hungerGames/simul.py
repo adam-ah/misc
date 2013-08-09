@@ -14,9 +14,22 @@ def run_tests(script_name, script_name2):
 
     user_module = importlib.import_module(script_name[:-3])
     user_module2 = importlib.import_module(script_name2[:-3])
+    playerTypes = [
+            user_module.Pushover, 
+            user_module.Freeloader, 
+            user_module.Alternator, 
+            user_module.MaxRepHunter, 
+            user_module.Random, 
+            user_module.FairHunter, 
+            user_module.BoundedHunter, 
+            user_module.AverageHunter
+            ]
+
+    print(playerTypes)
 
     for i in range(playercount):
-        player = user_module.Player()
+        # player = user_module.Player()
+        player = playerTypes[i % len(playerTypes)]()
         if i >= playercount - smartcount:
             player = user_module2.Player()
         players.append(player)
