@@ -1,5 +1,3 @@
-import random
-
 # You are reading a comment in code. You are doing it wrong...
 class Player:
     def __init__(self):
