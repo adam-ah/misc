@@ -1,0 +1,77 @@
+.clear
+{
+    clear: both;
+}
+
+.code39
+{
+    height: 106px;
+    width: 54px;
+    display: block;
+    float: left;
+}
+
+.cstar
+{
+    background-image: url(images/star.png);
+}
+
+.c0
+{
+    background-image: url(images/0.png);
+}
+
+.c1
+{
+    background-image: url(images/1.png);
+}
+
+.c2
+{
+    background-image: url(images/2.png);
+}
+
+
+.c3
+{
+    background-image: url(images/3.png);
+}
+
+
+
+.c4
+{
+    background-image: url(images/4.png);
+}
+
+
+.c5
+{
+    background-image: url(images/5.png);
+}
+
+
+.c6
+{
+    background-image: url(images/6.png);
+}
+
+
+.c7
+{
+    background-image: url(images/7.png);
+}
+
+
+.c8
+{
+    background-image: url(images/8.png);
+}
+
+
+.c9
+{
+    background-image: url(images/9.png);
+}
+
+
