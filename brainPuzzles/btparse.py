@@ -11,7 +11,11 @@ class Puzzle:
         if re.match("^\([a-z]\) ", line):
             self.choices.append(line)
         else:
-            self.question = self.question + line.strip() + ' '
+            self.question = self.question + line + ' '
+
+    def addAnswer(self, answer):
+        if self.answer == '':
+            self.answer = self.fixline(answer) 
 
     def fixline(self, line):
         line = line.replace('\x92',"'")
@@ -24,10 +28,12 @@ class Puzzle:
         line = line.replace('\xba','deg')
         line = line.replace('\xb4',"'")
         line = line.replace('\x97',"-")
+        line = line.strip()
         return line
 
     def __init__(self, number):
         self.question = '' 
+        self.answer = ''
         self.choices = []
         self.number = number
         pass
@@ -41,21 +47,32 @@ def main():
     puzzle = Puzzle(0)
     f = open('bt.txt')
     content = f.read()
+    inanswers = False
     lines = content.split('\r\n')
     for line in lines:
         if re.match("^\d+\.\s$", line):
             number = int(line.replace('. ', ''))
             if number == prev + 1:
-                puzzle = Puzzle(number)
-                puzzles.append(puzzle)
                 print number
+                if inanswers:
+                    puzzle = puzzles[number - 1]
+                else:
+                    puzzle = Puzzle(number)
+                    puzzles.append(puzzle)
+
                 prev = number
         else:
             if line.startswith("aNSWerS aNSWerS "):
-                break
-            puzzle.addLine(line)
+                inanswers = True
+                prev = 0
+                continue
+            if inanswers:
+                puzzle.addAnswer(line)
+            else:
+                puzzle.addLine(line)
         # print line.replace("’","'")
     # print(str.format('Length: {0}', len(puzzles)))
+    # print json.dumps(puzzles[2].__dict__)
     for puzzle in puzzles:
         print json.dumps(puzzle.__dict__)
 
