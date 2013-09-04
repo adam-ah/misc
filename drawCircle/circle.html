@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+        <script>
+            var canvas = document.getElementById('myCanvas');
+            var context = canvas.getContext('2d');
+
+            var x = 100;
+            var y = 0;
+            var middleX = 100;
+            var middleY = 100;
+
+            var sinX = 300;
+            var sinY = 100;
+
+            var epsilon = 128;
+            var steps = 2 * Math.PI * epsilon; 
+
+            var sinMarkerCount = 12;
+
+            for(var i = 0; i < steps; i++)
+            {
+                // http://home.pipeline.com/~hbaker1/hakmem/hacks.html#item149
+                x -= y/epsilon;
+                y += x/epsilon;
+
+                // Draws circle.
+                context.fillRect(middleX+x, middleY+y, 1, 1);
+
+                var deg = i / 2 / epsilon / Math.PI * 360;
+                var rad = i / epsilon;
+                var sinVal = y / 100;
+
+                // Draws sinus wave.
+                context.fillRect(sinX+deg, sinY+y, 1, 1);
+
+                if(i % parseInt(steps / sinMarkerCount) == 0)
+                {
+                    var text = "Sin(" + parseInt(deg) + ")=" + sinVal.toFixed(2);
+                    // Draws couple sinus values on sinus wave.
+                    context.fillText(text, sinX+deg, sinY+y);
+                }
+            }
+        </script>
+    </body>
+</html>
