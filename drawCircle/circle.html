@@ -36,9 +36,9 @@
                 // Draws circle.
                 context.fillRect(middleX+x, middleY+y, 1, 1);
 
-                var deg = i / 2 / epsilon / Math.PI * 360;
-                var rad = i / epsilon;
-                var sinVal = y / 100;
+                var deg = i / 2 / epsilon / Math.PI * 360; // Angle in degrees.
+                var rad = i / epsilon; // Angle in radians.
+                var sinVal = y / 100; // Normalising to 0-1
 
                 // Draws sinus wave.
                 context.fillRect(sinX+deg, sinY+y, 1, 1);
