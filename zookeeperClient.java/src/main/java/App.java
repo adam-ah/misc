@@ -55,6 +55,8 @@ public class App {
 
             System.out.println("Data: " + config);
 
+            client.setData().forPath(CONFIG_PATH, "Hello from Java.".getBytes());
+
             // Delete the data.
             // client.delete().forPath(CONFIG_PATH);
         } else {
