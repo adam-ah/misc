@@ -47,3 +47,5 @@ set statusline+=\ %P    "percent through file
 :nnoremap <c-n> :set invrelativenumber<cr>
 :nnoremap <s-down> :m+1<cr>
 :nnoremap <s-up> :m-2<cr>
+
+" :nnoremap <leader>ff :let ln=line('.')<cr>:%!~/Documents/js-beautify/python/js-beautify -i<cr>:<c-r>=ln<cr><cr>:unlet ln<cr>
